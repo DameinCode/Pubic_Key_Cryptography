@@ -152,7 +152,6 @@ def decryption():
             temp1 = q%8
             if (p%4 == 3 and (temp1 == 3 or temp1 == 7)):
                 temp1 = 3
-                # print("wrf")
             square = squareRootModulo(temp1, x2, q)
             x2 = [square, -square]
         else: 
@@ -164,8 +163,6 @@ def decryption():
         k1 = pow(n1, -1, p)
         k2 = pow(n2, -1, q)
 
-        # print(k1, k2)
-        # print(x1, x2)
         temps = []
         for i in x1:
             for j in x2: 
@@ -209,12 +206,12 @@ def print_results():
     print("Numerical equivalents of ciphertext", numerical_equivalents_ciphertext)
     print("Numerical of probable plain texts: ", probable_block_of_texts)
 
-p = random.randint(1, 5611110)
-q = random.randint(p, 5611116)
+# p = random.randint(1, 5611110)
+# q = random.randint(p, 5611116)
 
-lines = primes_to_get_random.readlines()
-p = int(lines[p])
-q = int(lines[q])
+# lines = primes_to_get_random.readlines()
+# p = int(lines[p])
+# q = int(lines[q])
 
 p = 31
 q = 67
@@ -224,22 +221,20 @@ private_key = {
     "q": q
 }
 
-# p = 31
-# q = 67
+
 public_key_n = p*q # Alice's public key n:
 
 # Message to be encrypted 
 
 message = input("Message: ")
 
-# print(896%p)
+
 equivalent_blocks = numerical_equivalents(message)
 encrypted_blocks = encrypt()
 literal_equivalents = getLiteralEquivalent()
 numerical_equivalents_ciphertext = getNumericalEquivalentsOfCipherText()
 ciphertext = "".join(literal_equivalents)
-# print(squareRootModulo(1, 158404, 2081))
-# print_results()
+
 probable_block_of_texts = decryption()
 print(getPlainText())
 print_results()
